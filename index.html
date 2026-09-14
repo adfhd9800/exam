@@ -3,152 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>시험범위 · 수행평가 안내 | 학생회 학습부</title>
+<title>시험범위 안내 | 학생회 학습부</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-/* ═══════════════════════════════════════════════════════════
-   디자인 영역 — 건드리지 않아도 됩니다.
+/* ═══════════════════════════════════════════════════
+   디자인 영역 — 수정할 필요 없습니다.
    내용 수정은 파일 아래쪽 "데이터" 부분에서 하세요.
-   ═══════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════ */
 :root{
-  --bg:#16243F; --bg-deep:#101B30; --panel:#1F3055; --panel-2:#273C66;
-  --line:#354B7A; --ink:#EDF2FB; --ink-dim:#9BAFD1;
-  --mark:#F2E75B; --mark-soft:rgba(242,231,91,.16);
-  --alert:#FF8FB1; --ok:#7FE0B0; --r:14px;
+  --paper:#FFFFFF;
+  --surface:#F5F7FA;
+  --line:#DFE5EE;
+  --line-soft:#EDF1F6;
+  --ink:#101E36;
+  --ink-mid:#4B5C78;
+  --ink-dim:#6B7C96;
+  --hl:#FFE45C;
+  --ok-bg:#E6F4EE; --ok-ink:#0A6344;
+  --warn-bg:#FDEEE5; --warn-ink:#9A3412; --warn-line:#F0B896;
+  --focus:#1D4ED8;
+  --r:12px;
+  --tap:48px;              /* 최소 터치 영역 */
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--ink);
-  font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;
-  font-size:16px;line-height:1.6;font-variant-numeric:tabular-nums;padding-bottom:80px}
-.wrap{max-width:720px;margin:0 auto;padding:0 18px}
-button{font:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,
+    system-ui,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  font-size:17px; line-height:1.65;
+  font-variant-numeric:tabular-nums;
+  padding-bottom:72px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
 
-header{padding:26px 0 16px}
-.school{font-size:13px;color:var(--ink-dim)}
-h1{font-size:25px;font-weight:800;letter-spacing:-.03em;margin-top:2px;line-height:1.25}
-.updated{margin-top:9px;font-size:12.5px;color:var(--ink-dim)}
-.updated b{color:var(--mark);font-weight:600}
+/* ── 헤더 ── */
+header{padding:26px 0 18px}
+.school{font-size:14px;color:var(--ink-dim);font-weight:500}
+h1{font-size:27px;font-weight:800;letter-spacing:-.035em;margin-top:3px;line-height:1.25}
+.updated{margin-top:8px;font-size:13.5px;color:var(--ink-dim)}
+.updated b{color:var(--ink-mid);font-weight:600}
 
 /* ── 학년 선택 ── */
-.grades{display:flex;gap:5px;padding:5px;background:var(--bg-deep);border-radius:12px;margin-bottom:6px}
-.grade{flex:1;padding:11px 4px;border:0;border-radius:8px;background:transparent;
-  color:var(--ink-dim);font-size:15px;font-weight:700;letter-spacing:-.02em;transition:background .13s,color .13s}
-.grade[aria-selected="true"]{background:var(--mark);color:#16243F}
-.grade[disabled]{opacity:.35;cursor:not-allowed}
+.grades{
+  display:flex;gap:8px;margin:4px 0 24px;
+  position:sticky;top:0;z-index:10;
+  background:var(--paper);padding:10px 0;
+  border-bottom:1px solid var(--line);
+}
+.grade{
+  flex:1;min-height:var(--tap);
+  border:1.5px solid var(--line);border-radius:10px;background:var(--paper);
+  color:var(--ink-mid);font-size:16px;font-weight:700;letter-spacing:-.02em;
+  transition:background .12s,border-color .12s,color .12s;
+}
+.grade[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.grade:hover:not([aria-pressed="true"]){border-color:var(--ink-dim)}
 
-/* ── 2주 스트립 ── */
-.strip-sec{padding:22px 0 4px;border-top:1px solid var(--line);margin-top:16px}
-.strip-title{font-size:13px;color:var(--ink-dim);margin-bottom:11px}
-.strip{display:flex;gap:3px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
-.strip::-webkit-scrollbar{display:none}
-.day{flex:1 0 auto;min-width:40px;text-align:center;padding:7px 3px 9px;border-radius:9px;background:var(--bg-deep)}
-.day .w{font-size:10.5px;color:var(--ink-dim);line-height:1.4}
-.day .d{font-size:16px;font-weight:700;line-height:1.4}
-.day.sun .w,.day.sun .d{color:var(--alert)}
-.day.today{outline:2px solid var(--ink);outline-offset:-2px}
-.day.today .d{color:var(--ink)}
-.day.exam,.day.exam .w,.day.exam .d{background:var(--mark);color:#16243F}
-.day .dot{width:5px;height:5px;border-radius:50%;background:var(--alert);margin:3px auto 0}
-.day.exam .dot{background:#16243F}
-.strip-key{display:flex;gap:14px;font-size:11.5px;color:var(--ink-dim);margin-top:10px;flex-wrap:wrap}
-.strip-key i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle}
+/* ── 시험 요약 ── */
+.exam-card{
+  background:var(--surface);border-radius:var(--r);padding:20px;
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+}
+.exam-info{flex:1;min-width:160px}
+.exam-name{font-size:17px;font-weight:700;letter-spacing:-.02em}
+.exam-date{font-size:14.5px;color:var(--ink-mid);margin-top:3px}
+.exam-dday{text-align:right}
+.exam-dday .n{font-size:40px;font-weight:800;letter-spacing:-.05em;line-height:1;display:block}
+.exam-dday .l{font-size:12.5px;color:var(--ink-dim);margin-top:4px;display:block}
 
-.soon{margin-top:22px;display:flex;flex-direction:column;gap:8px}
-.soon-item{display:flex;align-items:baseline;gap:12px;background:var(--panel);
-  border-radius:var(--r);padding:13px 15px;border-left:4px solid var(--line)}
-.soon-item.urgent{border-left-color:var(--alert)}
-.soon-item.isexam{border-left-color:var(--mark)}
-.dday{font-size:19px;font-weight:800;letter-spacing:-.04em;flex:0 0 auto;min-width:62px}
-.soon-item.urgent .dday{color:var(--alert)}
-.soon-item.isexam .dday{color:var(--mark)}
-.soon-name{font-size:15px;font-weight:600;line-height:1.4}
-.soon-meta{font-size:12.5px;color:var(--ink-dim);margin-top:2px}
+/* ── 확인중 알림 ── */
+.notice{
+  margin-top:12px;background:var(--warn-bg);border:1px solid var(--warn-line);
+  border-radius:var(--r);padding:14px 16px;font-size:14.5px;color:var(--warn-ink);
+  line-height:1.6;
+}
+.notice b{font-weight:700}
+.notice[hidden]{display:none}
 
-.tabs{display:flex;gap:6px;margin:30px 0 14px;position:sticky;top:0;z-index:5;
-  background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
-.tab{flex:1;padding:10px;border-radius:10px;border:1px solid var(--line);background:transparent;
-  color:var(--ink-dim);font-size:14.5px;font-weight:600;transition:background .12s,color .12s}
-.tab[aria-selected="true"]{background:var(--mark);color:#16243F;border-color:var(--mark)}
+/* ── 계열 필터 ── */
+.filter{display:flex;gap:8px;margin:26px 0 8px;flex-wrap:wrap}
+.filter-label{width:100%;font-size:13.5px;color:var(--ink-dim);margin-bottom:2px}
+.chip{
+  min-height:42px;padding:0 18px;border-radius:999px;
+  border:1.5px solid var(--line);background:var(--paper);
+  color:var(--ink-mid);font-size:15px;font-weight:600;
+}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip:hover:not([aria-pressed="true"]){border-color:var(--ink-dim)}
 
-.filter{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
-.chip{padding:6px 13px;border-radius:999px;border:1px solid var(--line);
-  background:transparent;color:var(--ink-dim);font-size:13px}
-.chip[aria-pressed="true"]{background:var(--panel-2);color:var(--ink);border-color:var(--panel-2)}
-
-.subj{border-bottom:1px solid var(--line)}
-.subj-head{width:100%;display:flex;align-items:center;gap:10px;background:none;border:0;
-  color:var(--ink);padding:15px 2px;text-align:left;list-style:none}
-.subj-head::-webkit-details-marker{display:none}
-.subj-name{font-size:16px;font-weight:600;flex:1}
-.badge{font-size:11.5px;padding:3px 8px;border-radius:6px;font-weight:600;white-space:nowrap}
-.badge.fixed{background:rgba(127,224,176,.14);color:var(--ok)}
-.badge.check{background:rgba(255,143,177,.15);color:var(--alert)}
-.caret{color:var(--ink-dim);font-size:13px;transition:transform .18s}
-.subj[open] .caret{transform:rotate(180deg)}
-.subj-body{padding:0 2px 16px;font-size:14.5px;line-height:1.75}
-.subj-body .range{background:linear-gradient(transparent 58%,var(--mark-soft) 58%);padding:0 1px}
-.subj-body .note{margin-top:9px;font-size:13px;color:var(--ink-dim)}
-.subj-body .note.warn{color:var(--alert)}
-.mini-report{margin-top:12px;padding:7px 13px;border-radius:8px;border:1px solid var(--line);
-  background:transparent;color:var(--ink-dim);font-size:12.5px;font-weight:500}
-.mini-report:hover{border-color:var(--alert);color:var(--alert)}
-
-.pa{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid var(--line)}
-.pa-date{flex:0 0 52px;text-align:center;padding-top:2px}
-.pa-md{font-size:15px;font-weight:700;line-height:1.2}
-.pa-w{font-size:11px;color:var(--ink-dim)}
-.pa-body{flex:1;min-width:0}
-.pa-top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
-.pa-subj{font-size:15px;font-weight:600}
-.pa-track{font-size:11.5px;color:var(--ink-dim)}
-.pa-what{font-size:14px;margin-top:2px}
-.pa-dday{font-size:12.5px;color:var(--ink-dim);margin-top:4px}
-.pa-dday.urgent{color:var(--alert);font-weight:600}
-.pa.done{opacity:.4}
-.pa.done .pa-dday{text-decoration:line-through}
-.empty{padding:36px 0;text-align:center;color:var(--ink-dim);font-size:14px}
-.panel[hidden]{display:none}
+/* ── 과목 ── */
+.group{margin-top:30px}
+.group-title{
+  font-size:13.5px;font-weight:700;color:var(--ink-dim);letter-spacing:.04em;
+  padding-bottom:8px;border-bottom:2px solid var(--line);
+}
+.subj{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.subj-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.subj-name{font-size:18px;font-weight:700;letter-spacing:-.02em}
+.badge{font-size:12.5px;padding:3px 9px;border-radius:6px;font-weight:700;white-space:nowrap}
+.badge.fixed{background:var(--ok-bg);color:var(--ok-ink)}
+.badge.check{background:var(--warn-bg);color:var(--warn-ink)}
+.range{
+  margin-top:9px;font-size:16.5px;line-height:1.75;max-width:62ch;
+  background:linear-gradient(transparent 62%,var(--hl) 62%);
+  display:inline;
+}
+.note{
+  margin-top:11px;font-size:14.5px;line-height:1.6;color:var(--ink-mid);
+  max-width:62ch;padding-left:12px;border-left:3px solid var(--line);
+}
+.note.warn{color:var(--warn-ink);border-left-color:var(--warn-line)}
+.mini{
+  margin-top:12px;min-height:38px;padding:0 14px;border-radius:8px;
+  border:1.5px solid var(--line);background:var(--paper);
+  color:var(--ink-dim);font-size:13.5px;font-weight:600;
+}
+.mini:hover{border-color:var(--warn-ink);color:var(--warn-ink)}
+.empty{padding:44px 0;text-align:center;color:var(--ink-dim);font-size:15px}
 
 /* ── 제보 ── */
-.report-cta{margin-top:34px;background:var(--panel);border-radius:var(--r);padding:20px 18px}
-.report-cta h2{font-size:16.5px;font-weight:700;letter-spacing:-.02em}
-.report-cta p{font-size:13.5px;color:var(--ink-dim);margin-top:6px;line-height:1.65}
-.btn-main{margin-top:14px;width:100%;padding:13px;border:0;border-radius:10px;
-  background:var(--alert);color:#16243F;font-size:15px;font-weight:700}
-.btn-main:hover{filter:brightness(1.08)}
+.cta{margin-top:38px;border:1.5px solid var(--line);border-radius:var(--r);padding:22px 20px}
+.cta h2{font-size:18px;font-weight:800;letter-spacing:-.025em}
+.cta p{font-size:14.5px;color:var(--ink-mid);margin-top:7px;line-height:1.65;max-width:52ch}
+.btn-main{
+  margin-top:16px;width:100%;min-height:52px;border:0;border-radius:10px;
+  background:var(--ink);color:#fff;font-size:16px;font-weight:700;
+}
+.btn-main:hover{background:#25375A}
 
-.overlay{position:fixed;inset:0;background:rgba(8,14,26,.72);display:flex;
-  align-items:flex-end;justify-content:center;z-index:50;padding:0}
+.overlay{position:fixed;inset:0;background:rgba(16,30,54,.45);display:flex;
+  align-items:flex-end;justify-content:center;z-index:60}
 .overlay[hidden]{display:none}
-.sheet{background:var(--bg);width:100%;max-width:560px;max-height:92vh;overflow-y:auto;
-  border-radius:18px 18px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom));
-  border-top:1px solid var(--line)}
-@media(min-width:560px){.overlay{align-items:center}.sheet{border-radius:18px;max-height:88vh}}
-.sheet h2{font-size:19px;font-weight:800;letter-spacing:-.03em}
-.sheet .sub{font-size:13px;color:var(--ink-dim);margin-top:5px;line-height:1.6}
-.field{margin-top:16px}
-.field label{display:block;font-size:13px;color:var(--ink-dim);margin-bottom:6px}
-.field select,.field input,.field textarea{width:100%;padding:11px 12px;border-radius:9px;
-  border:1px solid var(--line);background:var(--bg-deep);color:var(--ink);
-  font:inherit;font-size:14.5px}
-.field textarea{min-height:92px;resize:vertical;line-height:1.6}
-.field small{display:block;font-size:12px;color:var(--ink-dim);margin-top:5px}
-.sheet-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
-.sheet-actions button{flex:1 1 140px;padding:13px;border-radius:10px;font-size:14.5px;font-weight:700}
-.b-copy{border:1px solid var(--line);background:transparent;color:var(--ink)}
-.b-send{border:0;background:var(--mark);color:#16243F}
-.b-close{width:100%;margin-top:8px;padding:11px;border:0;background:none;color:var(--ink-dim);font-size:13.5px}
-.toast{margin-top:12px;font-size:13px;color:var(--ok);display:none}
+.sheet{background:var(--paper);width:100%;max-width:560px;max-height:92vh;overflow-y:auto;
+  border-radius:18px 18px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom))}
+@media(min-width:560px){.overlay{align-items:center}.sheet{border-radius:16px;max-height:88vh}}
+.sheet h2{font-size:21px;font-weight:800;letter-spacing:-.03em}
+.sheet .sub{font-size:14px;color:var(--ink-mid);margin-top:6px;line-height:1.6}
+.field{margin-top:18px}
+.field label{display:block;font-size:14px;font-weight:600;color:var(--ink-mid);margin-bottom:7px}
+.field select,.field input,.field textarea{
+  width:100%;min-height:var(--tap);padding:12px 13px;border-radius:9px;
+  border:1.5px solid var(--line);background:var(--paper);color:var(--ink);
+  font:inherit;font-size:16px;   /* 16px 미만이면 iOS에서 화면이 확대됨 */
+}
+.field textarea{min-height:104px;resize:vertical;line-height:1.6}
+.field small{display:block;font-size:13px;color:var(--ink-dim);margin-top:6px}
+.preview{margin-top:16px;padding:13px;border-radius:9px;background:var(--surface);
+  font-size:13.5px;color:var(--ink-mid);white-space:pre-wrap;line-height:1.65}
+.sheet-actions{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+.sheet-actions button{flex:1 1 150px;min-height:52px;border-radius:10px;font-size:16px;font-weight:700}
+.b-copy{border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+.b-send{border:0;background:var(--ink);color:#fff}
+.b-close{width:100%;min-height:46px;margin-top:10px;border:0;background:none;
+  color:var(--ink-dim);font-size:15px}
+.toast{margin-top:13px;font-size:14px;color:var(--ok-ink);font-weight:600;display:none}
 .toast.show{display:block}
-.preview{margin-top:14px;padding:12px;border-radius:9px;background:var(--bg-deep);
-  border:1px dashed var(--line);font-size:12.5px;color:var(--ink-dim);white-space:pre-wrap;line-height:1.65}
 
 footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
-  font-size:12.5px;color:var(--ink-dim);line-height:1.8}
+  font-size:13.5px;color:var(--ink-dim);line-height:1.75;max-width:56ch}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* 교실 게시판 인쇄용 */
+@media print{
+  body{padding:0;font-size:12pt}
+  .grades,.filter,.cta,.mini,.overlay,footer{display:none!important}
+  .exam-card,.notice{border:1px solid #999;background:none}
+  .range{background:none;text-decoration:underline}
+  .subj{break-inside:avoid}
+}
 </style>
 </head>
 <body>
@@ -156,104 +184,90 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
 
 <header>
   <div class="school" id="school"></div>
-  <h1>시험범위 · 수행평가 안내</h1>
+  <h1>시험범위 안내</h1>
   <p class="updated">마지막 업데이트 <b id="updated"></b> · 학생회 학습부</p>
 </header>
 
-<div class="grades" role="tablist" id="grades"></div>
+<div class="grades" id="grades" role="group" aria-label="학년 선택"></div>
 
-<section class="strip-sec">
-  <p class="strip-title">앞으로 2주</p>
-  <div class="strip" id="strip"></div>
-  <div class="strip-key">
-    <span><i style="background:var(--mark)"></i>지필평가</span>
-    <span><i style="background:var(--alert);border-radius:50%"></i>수행평가</span>
+<div class="exam-card">
+  <div class="exam-info">
+    <div class="exam-name" id="exam-name"></div>
+    <div class="exam-date" id="exam-date"></div>
   </div>
-  <div class="soon" id="soon"></div>
-</section>
-
-<div class="tabs" role="tablist">
-  <button class="tab" role="tab" id="tab-exam" aria-selected="true">시험범위</button>
-  <button class="tab" role="tab" id="tab-pa" aria-selected="false">수행평가</button>
+  <div class="exam-dday">
+    <span class="n" id="dday-n"></span>
+    <span class="l" id="dday-l"></span>
+  </div>
 </div>
+
+<div class="notice" id="notice" hidden></div>
 
 <div class="filter" id="filter"></div>
 
-<section class="panel" id="panel-exam" role="tabpanel"><div id="subjects"></div></section>
-<section class="panel" id="panel-pa" role="tabpanel" hidden><div id="palist"></div></section>
+<div id="subjects"></div>
 
-<section class="report-cta">
-  <h2>범위가 수업 내용과 다른가요?</h2>
-  <p>선생님이 안내한 내용과 여기 적힌 범위가 다르면 알려주세요. 학습부가 확인해서 하루 안에 수정합니다.</p>
+<section class="cta">
+  <h2>수업에서 들은 범위와 다른가요?</h2>
+  <p>선생님이 안내한 내용과 다르면 알려주세요. 학습부가 확인해서 반영합니다. 이름은 안 적어도 됩니다.</p>
   <button class="btn-main" id="open-report">다른 점 알리기</button>
 </section>
 
 <footer>
-  <p><span class="badge check" style="padding:2px 7px">확인중</span> 표시는 담당 선생님께 재확인을 요청한 항목입니다. 확정되기 전까지는 수업 시간 안내를 우선하세요.</p>
+  <p><b>확인중</b>으로 표시된 과목은 학습부가 담당 선생님께 재확인을 요청한 상태입니다. 확정되기 전까지는 수업 시간에 들은 안내를 우선하세요.</p>
 </footer>
 
 </div>
 
-<!-- 제보 시트 -->
 <div class="overlay" id="overlay" hidden>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <h2 id="sheet-title">다른 점 알리기</h2>
-    <p class="sub">아무 내용이나 괜찮습니다. 애매해도 일단 보내주세요 — 확인은 학습부가 합니다.</p>
-
+    <p class="sub">애매해도 괜찮습니다. 확인은 학습부가 합니다.</p>
+    <div class="field"><label for="f-grade">학년</label><select id="f-grade"></select></div>
+    <div class="field"><label for="f-subj">과목</label><select id="f-subj"></select></div>
     <div class="field">
-      <label for="f-grade">학년</label>
-      <select id="f-grade"></select>
-    </div>
-    <div class="field">
-      <label for="f-kind">무엇에 대한 내용인가요</label>
+      <label for="f-kind">어떤 내용인가요</label>
       <select id="f-kind">
-        <option>지필평가 범위가 다름</option>
-        <option>수행평가 날짜가 다름</option>
-        <option>아예 빠진 과목/일정이 있음</option>
+        <option>범위가 수업 내용과 다름</option>
+        <option>과목이 아예 빠져 있음</option>
+        <option>범위가 애매해서 확인 필요</option>
         <option>기타</option>
       </select>
     </div>
     <div class="field">
-      <label for="f-subj">과목</label>
-      <select id="f-subj"></select>
-    </div>
-    <div class="field">
       <label for="f-text">선생님이 안내한 내용</label>
-      <textarea id="f-text" placeholder="예: 물리 쌤이 오늘 수업에서 열역학 제2법칙까지 나간다고 하셨어요. 여기엔 역학적 에너지까지만 적혀 있습니다."></textarea>
+      <textarea id="f-text" placeholder="예: 물리 선생님이 오늘 수업에서 열역학 제2법칙까지 나간다고 하셨습니다."></textarea>
     </div>
     <div class="field">
-      <label for="f-who">반 / 이름 <span style="opacity:.7">(안 적어도 됩니다)</span></label>
-      <input id="f-who" placeholder="2학년 4반 김○○">
-      <small>확인 과정에서 되물어볼 일이 생기면 연락하기 위해서만 씁니다.</small>
+      <label for="f-who">반 / 이름 <span style="font-weight:400;opacity:.75">(선택)</span></label>
+      <input id="f-who" placeholder="2학년 4반">
+      <small>되물어볼 일이 생겼을 때만 사용합니다. 사이트에는 표시되지 않습니다.</small>
     </div>
-
     <div class="preview" id="preview"></div>
-
     <div class="sheet-actions">
       <button class="b-copy" id="btn-copy">내용 복사</button>
       <button class="b-send" id="btn-send">제보 폼으로 보내기</button>
     </div>
-    <p class="toast" id="toast">복사됐습니다. 학습부 단톡에 붙여넣어 주세요.</p>
+    <p class="toast" id="toast">복사했습니다. 학습부에 붙여넣어 주세요.</p>
     <button class="b-close" id="btn-close">닫기</button>
   </div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    ■ 데 이 터 — 여기만 고치면 됩니다 ■
 
-   · 날짜는 반드시 "2026-10-06" 형태 (두 자리씩)
-   · 계열은 "공통" / "인문" / "자연" 중 하나
-   · 상태는 "확정" / "확인중" 중 하나
-   · 줄 끝 쉼표(,)를 지우면 페이지가 깨집니다
-   · 학년별로 담당 부원이 자기 블록만 고치면 됩니다
-   ═══════════════════════════════════════════════════════════ */
+   · 날짜는 "2026-10-06" 형태 (두 자리씩)
+   · 계열은  공통 / 인문 / 자연  중 하나
+   · 상태는  확정 / 확인중      중 하나
+   · 줄 끝 쉼표(,)를 지우면 사이트가 깨집니다
+   ═══════════════════════════════════════════════════ */
 
 const 설정 = {
   학교: "○○고등학교",
-  업데이트: "2026-09-13",
-  기본학년: 2,                       // 사이트 열었을 때 처음 보이는 학년
-  제보폼: "https://forms.gle/여기에구글폼주소"   // ← 구글 폼 만들어서 주소 붙여넣기
+  업데이트: "2026-09-14",
+  기본학년: 2,
+  제보폼: "https://forms.gle/여기에구글폼주소"
 };
 
 const 학년별 = {
@@ -262,14 +276,11 @@ const 학년별 = {
   1: {
     지필: { 이름:"2학기 1차 지필평가", 시작:"2026-10-06", 끝:"2026-10-08" },
     과목: [
-      { 과목:"통합과학",   계열:"공통", 범위:"Ⅲ단원 변화와 다양성 전체, Ⅳ단원 1절", 비고:"", 상태:"확정" },
-      { 과목:"통합사회",   계열:"공통", 범위:"5단원 시장경제와 금융 ~ 6단원 2절",    비고:"", 상태:"확정" },
-      { 과목:"수학",       계열:"공통", 범위:"경우의 수 전체, 행렬 (1)–(2)",        비고:"", 상태:"확인중" },
-      { 과목:"공통국어",   계열:"공통", 범위:"교과서 3–4단원, 부교재 p.72–p.118",   비고:"", 상태:"확정" }
-    ],
-    수행: [
-      { 과목:"통합과학", 내용:"실험 보고서 제출",        날짜:"2026-09-22", 계열:"공통" },
-      { 과목:"공통국어", 내용:"발표 수행 (2차시)",       날짜:"2026-10-02", 계열:"공통" }
+      { 과목:"공통국어", 계열:"공통", 범위:"교과서 3–4단원, 부교재 p.72–p.118", 비고:"", 상태:"확정" },
+      { 과목:"통합사회", 계열:"공통", 범위:"5단원 시장경제와 금융 ~ 6단원 2절",  비고:"", 상태:"확정" },
+      { 과목:"통합과학", 계열:"공통", 범위:"Ⅲ단원 변화와 다양성 전체, Ⅳ단원 1절", 비고:"", 상태:"확정" },
+      { 과목:"수학",     계열:"공통", 범위:"경우의 수 전체, 행렬 (1)–(2)",
+        비고:"행렬 뒷부분 포함 여부를 담당 선생님께 확인 중입니다.", 상태:"확인중" }
     ]
   },
 
@@ -277,22 +288,18 @@ const 학년별 = {
   2: {
     지필: { 이름:"2학기 1차 지필평가", 시작:"2026-10-06", 끝:"2026-10-08" },
     과목: [
-      { 과목:"문학",        계열:"공통", 범위:"교과서 1단원 전체 ~ 2단원 (2), 부교재 p.14–p.61", 비고:"작품 외 학습활동 포함", 상태:"확정" },
-      { 과목:"수학Ⅰ",      계열:"공통", 범위:"지수함수와 로그함수 전체, 삼각함수 (1)–(2)",      비고:"", 상태:"확정" },
-      { 과목:"영어Ⅱ",      계열:"공통", 범위:"Lesson 3–5, 모의고사 3회분",                     비고:"", 상태:"확인중" },
-      { 과목:"물리학Ⅰ",    계열:"자연", 범위:"역학적 에너지 ~ 열역학 제2법칙",
-        비고:"수업에서는 열역학까지 나간다고 안내됨. 공문서상 범위와 차이가 있어 확인 중.",       상태:"확인중" },
-      { 과목:"화학Ⅰ",      계열:"자연", 범위:"화학 반응식과 양적 관계 ~ 산화·환원 반응",        비고:"", 상태:"확정" },
-      { 과목:"생활과 윤리", 계열:"인문", 범위:"Ⅱ단원 생명과 윤리 전체, Ⅲ단원 1절",              비고:"", 상태:"확정" },
-      { 과목:"세계사",      계열:"인문", 범위:"3단원 전체 ~ 4단원 2절",                          비고:"", 상태:"확정" }
-    ],
-    수행: [
-      { 과목:"화학Ⅰ",       내용:"'우리 생활 속 화학' 탐구 보고서 제출", 날짜:"2026-09-19", 계열:"자연" },
-      { 과목:"영어Ⅱ",       내용:"영어 에세이 작성 (수업 중)",           날짜:"2026-09-24", 계열:"공통" },
-      { 과목:"문학",        내용:"모둠 발표 · 작품 재해석",              날짜:"2026-09-29", 계열:"공통" },
-      { 과목:"물리학Ⅰ",     내용:"실험 보고서 제출",                     날짜:"2026-10-14", 계열:"자연" },
-      { 과목:"생활과 윤리", 내용:"토론 수행 (2차시)",                    날짜:"2026-10-16", 계열:"인문" },
-      { 과목:"수학Ⅰ",       내용:"서술형 논술 평가",                     날짜:"2026-10-21", 계열:"공통" }
+      { 과목:"문학",   계열:"공통", 범위:"교과서 1단원 전체 ~ 2단원 (2), 부교재 p.14–p.61",
+        비고:"작품 외 학습활동도 포함됩니다.", 상태:"확정" },
+      { 과목:"수학Ⅰ", 계열:"공통", 범위:"지수함수와 로그함수 전체, 삼각함수 (1)–(2)", 비고:"", 상태:"확정" },
+      { 과목:"영어Ⅱ", 계열:"공통", 범위:"Lesson 3–5, 모의고사 3회분",
+        비고:"모의고사 회차가 확정되지 않았습니다.", 상태:"확인중" },
+
+      { 과목:"물리학Ⅰ", 계열:"자연", 범위:"역학적 에너지 ~ 열역학 제2법칙",
+        비고:"수업에서는 열역학까지 안내되었으나 공문서상 범위와 차이가 있어 확인 중입니다.", 상태:"확인중" },
+      { 과목:"화학Ⅰ",   계열:"자연", 범위:"화학 반응식과 양적 관계 ~ 산화·환원 반응", 비고:"", 상태:"확정" },
+
+      { 과목:"생활과 윤리", 계열:"인문", 범위:"Ⅱ단원 생명과 윤리 전체, Ⅲ단원 1절", 비고:"", 상태:"확정" },
+      { 과목:"세계사",      계열:"인문", 범위:"3단원 전체 ~ 4단원 2절",             비고:"", 상태:"확정" }
     ]
   },
 
@@ -302,204 +309,190 @@ const 학년별 = {
     과목: [
       { 과목:"화법과 언어", 계열:"공통", 범위:"교과서 2–3단원, 부교재 전 범위", 비고:"", 상태:"확정" },
       { 과목:"미적분",      계열:"자연", 범위:"수열의 극한 ~ 미분법 (3)",       비고:"", 상태:"확정" },
-      { 과목:"사회문화",    계열:"인문", 범위:"Ⅲ단원 전체",                     비고:"", 상태:"확인중" }
-    ],
-    수행: [
-      { 과목:"화법과 언어", 내용:"면접 실연 평가", 날짜:"2026-09-18", 계열:"공통" }
+      { 과목:"사회문화",    계열:"인문", 범위:"Ⅲ단원 전체",
+        비고:"심화 자료 포함 여부를 확인 중입니다.", 상태:"확인중" }
     ]
   }
 
 };
 
-/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════
    ■ 프로그램 영역 — 수정하지 마세요 ■
-   ═══════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════ */
 const $=s=>document.querySelector(s);
-const 요일=["일","월","화","수","목","금","토"];
 const d=s=>{const[y,m,dd]=s.split("-").map(Number);return new Date(y,m-1,dd)};
 const 오늘=(()=>{const t=new Date();return new Date(t.getFullYear(),t.getMonth(),t.getDate())})();
 const 남은날=s=>Math.round((d(s)-오늘)/864e5);
-const dday=n=>n===0?"D-DAY":n>0?"D-"+n:"D+"+(-n);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const md=s=>s.slice(5).replace("-","/");
+const 날짜글=s=>{const t=d(s);return `${t.getMonth()+1}월 ${t.getDate()}일(${"일월화수목금토"[t.getDay()]})`};
 
 $("#school").textContent=설정.학교;
 $("#updated").textContent=설정.업데이트;
 
 const 학년목록=Object.keys(학년별).map(Number).sort();
-let 현재학년=Number(location.hash.replace(/[^0-9]/g,""))||설정.기본학년;
-if(!학년별[현재학년]) 현재학년=학년목록[0];
-let 선택계열="전체";
+let 현재학년=설정.기본학년, 선택계열="전체";
+
+/* 주소창에 상태 저장 — 링크를 보내면 상대도 같은 화면을 봅니다 */
+function 주소읽기(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  const g=Number((h.match(/([123])학년/)||[])[1]);
+  if(학년별[g])현재학년=g;
+  const c=(h.match(/(인문|자연)/)||[])[1];
+  선택계열=c||"전체";
+}
+function 주소쓰기(){
+  const v=현재학년+"학년"+(선택계열==="전체"?"":"-"+선택계열);
+  /* 미리보기 창처럼 주소 변경이 막힌 환경에서는 조용히 넘어갑니다 */
+  try{ history.replaceState(null,"","#"+v); }
+  catch(e){ /* 무시 — 화면 동작에는 영향 없음 */ }
+}
+주소읽기();
+if(!학년별[현재학년])현재학년=학년목록[0];
 
 /* 학년 버튼 */
 학년목록.forEach(g=>{
   const b=document.createElement("button");
-  b.className="grade"; b.textContent=g+"학년"; b.dataset.g=g; b.setAttribute("role","tab");
-  b.onclick=()=>{현재학년=g;선택계열="전체";location.hash=g+"학년";전체그리기()};
+  b.className="grade"; b.textContent=g+"학년"; b.dataset.g=g;
+  b.onclick=()=>{현재학년=g;선택계열="전체";주소쓰기();그리기()};
   $("#grades").appendChild(b);
 });
 
-function 전체그리기(){
+function 그리기(){
   const D=학년별[현재학년];
-  [...$("#grades").children].forEach(b=>b.setAttribute("aria-selected",Number(b.dataset.g)===현재학년));
+  [...$("#grades").children].forEach(b=>
+    b.setAttribute("aria-pressed",Number(b.dataset.g)===현재학년));
 
-  /* 스트립 */
-  const strip=$("#strip"); strip.innerHTML="";
-  const 수행날짜=new Set(D.수행.map(p=>p.날짜));
-  for(let i=0;i<14;i++){
-    const t=new Date(오늘.getTime()+i*864e5);
-    const key=t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0");
-    const 시험중=d(D.지필.시작)<=t&&t<=d(D.지필.끝);
-    const el=document.createElement("div");
-    el.className="day"+(i===0?" today":"")+(t.getDay()===0?" sun":"")+(시험중?" exam":"");
-    el.innerHTML=`<div class="w">${요일[t.getDay()]}</div><div class="d">${t.getDate()}</div>`
-      +(수행날짜.has(key)?`<div class="dot"></div>`:"");
-    strip.appendChild(el);
-  }
+  /* 시험 요약 */
+  $("#exam-name").textContent=D.지필.이름;
+  $("#exam-date").textContent=`${날짜글(D.지필.시작)} ~ ${날짜글(D.지필.끝)}`;
+  const n=남은날(D.지필.시작), e=남은날(D.지필.끝);
+  const N=$("#dday-n"), L=$("#dday-l");
+  if(n>0){ N.textContent="D-"+n; L.textContent="시험까지"; }
+  else if(e>=0){ N.textContent="진행 중"; N.style.fontSize="26px"; L.textContent="시험 기간"; }
+  else { N.textContent="종료"; N.style.fontSize="26px"; L.textContent="지난 시험"; }
 
-  /* 임박 */
-  const soon=$("#soon"); soon.innerHTML="";
-  const 목록=[];
-  const n=남은날(D.지필.시작);
-  if(n>=0)목록.push({n,이름:D.지필.이름,메타:`${md(D.지필.시작)} ~ ${md(D.지필.끝)}`,시험:true});
-  D.수행.filter(p=>남은날(p.날짜)>=0).forEach(p=>
-    목록.push({n:남은날(p.날짜),이름:`${p.과목} — ${p.내용}`,메타:`${md(p.날짜)} · ${p.계열}`,시험:false}));
-  목록.sort((a,b)=>a.n-b.n);
-  if(!목록.length) soon.innerHTML=`<p class="empty">예정된 일정이 없습니다.</p>`;
-  목록.slice(0,3).forEach(x=>{
-    const el=document.createElement("div");
-    el.className="soon-item"+(x.시험?" isexam":"")+(!x.시험&&x.n<=3?" urgent":"");
-    el.innerHTML=`<span class="dday">${dday(x.n)}</span><div class="soon-body">
-      <div class="soon-name">${esc(x.이름)}</div><div class="soon-meta">${esc(x.메타)}</div></div>`;
-    soon.appendChild(el);
-  });
+  /* 확인중 알림 — 중요한 예외를 목록 위에서 먼저 알립니다 */
+  const 확인중=D.과목.filter(x=>x.상태==="확인중");
+  const nt=$("#notice");
+  if(확인중.length){
+    nt.hidden=false;
+    nt.innerHTML=`<b>확인중인 과목이 ${확인중.length}개 있습니다.</b><br>`
+      + 확인중.map(x=>esc(x.과목)).join(" · ")
+      + ` — 아래 목록에서 주황색 표시를 확인하세요.`;
+  } else nt.hidden=true;
 
-  /* 계열 필터 (해당 학년에 계열 구분이 있을 때만) */
+  /* 계열 필터 */
   const f=$("#filter"); f.innerHTML="";
-  const 계열있음=[...D.과목,...D.수행].some(x=>x.계열!=="공통");
+  const 계열있음=D.과목.some(x=>x.계열!=="공통");
   f.hidden=!계열있음;
   if(계열있음){
+    const lb=document.createElement("div");
+    lb.className="filter-label"; lb.textContent="내 계열만 보기";
+    f.appendChild(lb);
     ["전체","인문","자연"].forEach(k=>{
       const b=document.createElement("button");
-      b.className="chip"; b.textContent=k==="전체"?"전체 보기":k+"계";
+      b.className="chip"; b.textContent=k==="전체"?"전체":k+"계";
       b.setAttribute("aria-pressed",k===선택계열);
-      b.onclick=()=>{선택계열=k;전체그리기()};
+      b.onclick=()=>{선택계열=k;주소쓰기();그리기()};
       f.appendChild(b);
     });
   }
-  내용그리기();
-}
 
-const 보임=계열=>선택계열==="전체"||계열==="공통"||계열===선택계열;
-
-function 내용그리기(){
-  const D=학년별[현재학년];
-  const s=$("#subjects"); s.innerHTML="";
-  const 대상=D.과목.filter(x=>보임(x.계열));
-  if(!대상.length) s.innerHTML=`<p class="empty">해당 계열 과목이 아직 등록되지 않았습니다.</p>`;
-  대상.forEach(x=>{
-    const el=document.createElement("details"); el.className="subj";
-    el.innerHTML=`<summary class="subj-head">
-        <span class="subj-name">${esc(x.과목)}</span>
-        <span class="badge ${x.상태==="확정"?"fixed":"check"}">${esc(x.상태)}</span>
-        <span class="caret">▾</span></summary>
-      <div class="subj-body"><span class="range">${esc(x.범위)}</span>
+  /* 과목 목록 — 계열별로 묶어서 표시 */
+  const box=$("#subjects"); box.innerHTML="";
+  const 순서=선택계열==="전체"?["공통","자연","인문"]:["공통",선택계열];
+  let 개수=0;
+  순서.forEach(계열=>{
+    const 목록=D.과목.filter(x=>x.계열===계열);
+    if(!목록.length)return;
+    개수+=목록.length;
+    const g=document.createElement("section"); g.className="group";
+    g.innerHTML=`<h2 class="group-title">${계열==="공통"?"공통 과목":계열+"계 선택 과목"}</h2>`;
+    목록.forEach(x=>{
+      const el=document.createElement("article"); el.className="subj";
+      el.innerHTML=`
+        <div class="subj-top">
+          <h3 class="subj-name">${esc(x.과목)}</h3>
+          <span class="badge ${x.상태==="확정"?"fixed":"check"}">${esc(x.상태)}</span>
+        </div>
+        <p><span class="range">${esc(x.범위)}</span></p>
         ${x.비고?`<p class="note ${x.상태==="확정"?"":"warn"}">${esc(x.비고)}</p>`:""}
-        <button class="mini-report" data-subj="${esc(x.과목)}">이 과목 범위가 달라요</button>
-      </div>`;
-    el.querySelector(".mini-report").onclick=e=>{e.preventDefault();제보열기(x.과목)};
-    s.appendChild(el);
+        <button class="mini">이 과목 범위가 달라요</button>`;
+      el.querySelector(".mini").onclick=()=>제보열기(x.과목);
+      g.appendChild(el);
+    });
+    box.appendChild(g);
   });
-
-  const p=$("#palist"); p.innerHTML="";
-  const pa=D.수행.filter(x=>보임(x.계열)).sort((a,b)=>d(a.날짜)-d(b.날짜));
-  if(!pa.length) p.innerHTML=`<p class="empty">등록된 수행평가가 없습니다.</p>`;
-  pa.forEach(x=>{
-    const n=남은날(x.날짜),t=d(x.날짜);
-    const el=document.createElement("div"); el.className="pa"+(n<0?" done":"");
-    el.innerHTML=`<div class="pa-date"><div class="pa-md">${t.getMonth()+1}/${t.getDate()}</div>
-        <div class="pa-w">${요일[t.getDay()]}</div></div>
-      <div class="pa-body"><div class="pa-top"><span class="pa-subj">${esc(x.과목)}</span>
-        <span class="pa-track">${esc(x.계열)}</span></div>
-        <div class="pa-what">${esc(x.내용)}</div>
-        <div class="pa-dday ${n>=0&&n<=3?"urgent":""}">${n<0?"마감됨":dday(n)}</div></div>`;
-    p.appendChild(el);
-  });
+  if(!개수) box.innerHTML=`<p class="empty">등록된 과목이 없습니다.</p>`;
 }
-
-/* 탭 */
-(function(){
-  const tabs=[$("#tab-exam"),$("#tab-pa")], panels=[$("#panel-exam"),$("#panel-pa")];
-  tabs.forEach((t,i)=>t.onclick=()=>tabs.forEach((x,j)=>{
-    x.setAttribute("aria-selected",i===j); panels[j].hidden=i!==j;}));
-})();
 
 /* ── 제보 ── */
 const ov=$("#overlay");
+let 되돌릴요소=null;
 function 제보열기(과목){
+  되돌릴요소=document.activeElement;
   const gs=$("#f-grade"); gs.innerHTML="";
   학년목록.forEach(g=>{
-    const o=document.createElement("option"); o.value=g; o.textContent=g+"학년";
-    o.selected=g===현재학년; gs.appendChild(o);
+    const o=document.createElement("option");
+    o.value=g; o.textContent=g+"학년"; o.selected=g===현재학년; gs.appendChild(o);
   });
-  과목채우기(과목);
-  미리보기();
+  과목채우기(과목); 미리보기();
   ov.hidden=false; document.body.style.overflow="hidden";
   $("#f-text").focus();
 }
 function 과목채우기(선택){
   const g=Number($("#f-grade").value)||현재학년;
   const ss=$("#f-subj"); ss.innerHTML="";
-  const names=[...new Set([...학년별[g].과목.map(x=>x.과목),...학년별[g].수행.map(x=>x.과목)])];
-  names.forEach(n=>{
-    const o=document.createElement("option"); o.textContent=n; o.selected=n===선택; ss.appendChild(o);
+  학년별[g].과목.forEach(x=>{
+    const o=document.createElement("option");
+    o.textContent=x.과목; o.selected=x.과목===선택; ss.appendChild(o);
   });
-  const o=document.createElement("option"); o.textContent="기타 / 여기 없는 과목"; ss.appendChild(o);
+  const o=document.createElement("option"); o.textContent="여기 없는 과목"; ss.appendChild(o);
 }
 function 제보문(){
-  const g=$("#f-grade").value, k=$("#f-kind").value, s=$("#f-subj").value;
-  const t=$("#f-text").value.trim(), w=$("#f-who").value.trim();
   const now=new Date();
-  return `[학습부 제보]\n학년: ${g}학년\n과목: ${s}\n유형: ${k}\n내용: ${t||"(작성 안 함)"}\n`
-       + `제보자: ${w||"익명"}\n접수: ${now.getMonth()+1}/${now.getDate()} `
-       + `${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
+  return `[학습부 제보]\n`
+    +`학년: ${$("#f-grade").value}학년\n`
+    +`과목: ${$("#f-subj").value}\n`
+    +`유형: ${$("#f-kind").value}\n`
+    +`내용: ${$("#f-text").value.trim()||"(작성 안 함)"}\n`
+    +`제보자: ${$("#f-who").value.trim()||"익명"}\n`
+    +`접수: ${now.getMonth()+1}/${now.getDate()} `
+    +`${String(now.getHours()).padStart(2,"0")}:${String(now.getMinutes()).padStart(2,"0")}`;
 }
-function 미리보기(){ $("#preview").textContent=제보문(); }
+const 미리보기=()=>{$("#preview").textContent=제보문()};
 
 $("#open-report").onclick=()=>제보열기();
 $("#f-grade").onchange=()=>{과목채우기();미리보기()};
 ["f-kind","f-subj","f-text","f-who"].forEach(id=>{
-  document.getElementById(id).addEventListener("input",미리보기);
-  document.getElementById(id).addEventListener("change",미리보기);
+  const el=document.getElementById(id);
+  el.addEventListener("input",미리보기); el.addEventListener("change",미리보기);
 });
-$("#btn-close").onclick=()=>{ov.hidden=true;document.body.style.overflow=""};
-ov.onclick=e=>{if(e.target===ov)$("#btn-close").click()};
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!ov.hidden)$("#btn-close").click()});
+function 닫기(){ov.hidden=true;document.body.style.overflow="";되돌릴요소&&되돌릴요소.focus()}
+$("#btn-close").onclick=닫기;
+ov.onclick=e=>{if(e.target===ov)닫기()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!ov.hidden)닫기()});
 
 $("#btn-copy").onclick=async()=>{
   const txt=제보문();
   try{ await navigator.clipboard.writeText(txt); }
   catch{
-    const ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed";
-    ta.style.opacity=0; document.body.appendChild(ta); ta.select();
+    const ta=document.createElement("textarea");
+    ta.value=txt; ta.style.position="fixed"; ta.style.opacity=0;
+    document.body.appendChild(ta); ta.select();
     try{document.execCommand("copy")}catch{} ta.remove();
   }
   const t=$("#toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2600);
 };
 $("#btn-send").onclick=()=>{
   if(설정.제보폼.includes("여기에")){
-    alert("아직 제보 폼 주소가 등록되지 않았습니다.\n'내용 복사'를 눌러 학습부에 직접 전달해 주세요.");
+    alert("아직 제보 폼 주소가 등록되지 않았습니다.\n'내용 복사'를 눌러 학습부에 전달해 주세요.");
     return;
   }
   window.open(설정.제보폼,"_blank","noopener");
 };
 
-/* 시작 */
-전체그리기();
-window.addEventListener("hashchange",()=>{
-  const g=Number(location.hash.replace(/[^0-9]/g,""));
-  if(학년별[g]){현재학년=g;선택계열="전체";전체그리기()}
-});
+그리기();
 </script>
 </body>
 </html>
