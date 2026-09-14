@@ -167,12 +167,23 @@ h1{font-size:27px;font-weight:800;letter-spacing:-.035em;margin-top:3px;line-hei
 footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
   font-size:13.5px;color:var(--ink-dim);line-height:1.75;max-width:56ch}
 
+/* ── 제작 표기 ── */
+.sig{display:flex;align-items:center;gap:13px;margin-top:26px;padding-top:20px;
+  border-top:1px solid var(--line-soft)}
+.sig img{width:42px;height:auto;flex:0 0 auto}
+.sig-text{line-height:1.35}
+.sig-org{font-size:14.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em}
+.sig-dept{font-size:13px;font-weight:600;color:var(--ink-dim);margin-top:2px;letter-spacing:.02em}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
 /* 교실 게시판 인쇄용 */
 @media print{
   body{padding:0;font-size:12pt}
-  .grades,.filter,.cta,.mini,.overlay,footer{display:none!important}
+  .grades,.filter,.cta,.mini,.overlay{display:none!important}
+  footer>p{display:none}
+  footer{border-top:1px solid #999;margin-top:24px}
+  .sig{border-top:0;padding-top:0;margin-top:0}
   .exam-card,.notice{border:1px solid #999;background:none}
   .range{background:none;text-decoration:underline}
   .subj{break-inside:avoid}
@@ -215,6 +226,14 @@ footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
 
 <footer>
   <p><b>확인중</b>으로 표시된 과목은 학습부가 담당 선생님께 재확인을 요청한 상태입니다. 확정되기 전까지는 수업 시간에 들은 안내를 우선하세요.</p>
+
+  <div class="sig">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGcAAABwCAMAAAA0TJ7oAAAAP1BMVEUAAADu11MbGRVfVS2pnE/5+fhnYE9GOSDItlbr0DuZjDtzc3OHdzmGeUpkYGSpqasAAAAAAAAAAAAAAAAAAAAjYwzjAAAAEHRSTlMA/v7+/hDv/f7+/gT++6QNNC677QAACnhJREFUeNq1WonaozoINSGb+/u/7eUAiVFrb2c+x5l/a2tOWAIHcBj+8IrDkOT7P7yi/PN++7cwQIlDSjn9W6A4z3GgUvIQWHXD/C8FouBW71wg/n2P/0CsGShpZQjvM4C2qDDxXUFwpeDc5AOtvji3qNvF11UGYRxlFghgzhVKArS/6s8pFQizQHGMl6lAeYz0npHmISYSATIvrjhu8cmpP8TX3DkOojIoq+Hgb361sJXeUtwct+BKXmX1ETgj/4N85Bxr7r2DxDiUZG3+WiHXiD8c+92b8rBHA0dhPF+kmnN+4P+vBYYdOIEUh4BjlirZTeKMr7k1O3U2ETocxl5exgkuB/OyisOyLY7mV+PpRo6qV+Myz2b3GF4MpuIIkxk/ZI9YoOYJ6S9QHncmBiomRDunQKYUP9rnfwLsHh+sGtOEw1JxRlXbglMa/0Ke+BAWWXGro+kiD5vno9okvSMPPgbl7S7hHCXyDOzCdMFh8yhRmPm66KVu71MU4zzG7rNfRDJNJpj9hBOyS6kl73iSJm5ppaeIxIekpJN9sMZuP4PzPQ6fntVZ+tmHEwFC/Fglwn62jkQwcKbqDHxDpkTZ+7QN3Qlq5vEpJY52KfjUlBB1xyN8/kOuBTPT27GPuSaEJEYJIXAOIDrheP6N35DUJzdFS4rCI9wInPjRPLihuCnBsiIOi0g1NucSTjihAo/y3iqLsgC8N7wZVHHxw8kKvETyZqTd8k6Nazgt+YpT35J8x1sFFocot+bEH1o/pECNyURDwLpMznCXKIB8zpkIilNIO6diHiLKHFnD6BY7E8hTwOW3PyluxwnRDSKLSdyKA/7MPpQwTQsMtHTycO7xtC6BYynugBJ23ZmkQfbGDyQlqnnYOqNwNBgpRhEnmVlgd8LbKg/UlqoCEZIkBPECQZMTwi7tn9S26E4B5PHxARI6vgtiMB8gO0GKs8A8ShKEPPAxjnDO4Fsw56RxiROQhzdvkWXUPYFHjSKM2Z8GSQgaFxhVX2YFjQXQiXcqprEoy3vdrhFhH3beR42UZiTc4ycAEJ+TwK4ovyScGt6J/lQ1wep5AU2tMFgMVo4XxrlRDpa/Dl/llyyBfr2Gic8LDoRfjgXwEm3tzA/KxDkglUovKt2EsukHGPAF79UDxiZPEJV0OBKQoJ685l6iwDor5H+7SDem9JGhmKtKyEprzUPRzqM4ihwF4Z18B9RQfsQJR4BSZSyg+nD3pHFZTo7ByDHPoTfS8COOz+SqLKoyZ1sPVF0BUWD1h/0odEDpZ4HaAof2xRmDkQhIs+T6qW47B137yT56FVHI2AMhATBMkRR8XDjsOAvjHwE1w3QoVlIw0K6pzxJJ976ZabST1Lnh6aKzPL0mqm6wzsriSDBcMoXzCuUwEz2hjGeckC+fZB3KdtHWADOZJL56XXg8dEsm0UkRT/IUOnxhdLYi45YppZrPk2ykQR2rrDeI8QEn+al/I5BqiEG2/cgK20aCvTao8TDrl4t6h2tbCElBAoMcgXRWzjlI7c5Qual5vJwmW5g+4KzHa7zAos0FY3A3LpLItpHz2iy69vo4O3GHEy76AtMSqjpfyM48CFvxBsXsY3lWE7Ukc8IJpnUG22TR/WPJIgx3YHqz9Df1xm3WKFd5WOFL9tBCAX9F5JznLyUL0ndDuEKFWzQ75LGPgmQVI89fC17psKR6G3PQPkI+46i+sk9goiPIz/61cER0EDpSgvldKV9wuvDWtgYvKemLQAbT6qibhb7gpOM1KZifC+TKJsFuj9hDnn6Sh7qYI1H5a+UatPlwdrIf9dZd0qZ7MpGII3zsfJUvejvYw+kW5mP49qS2jQ8pOxCdr1x+wTnfgz+znz/79B6reZ6uG064pe3GMZHb5id3w94r8anX9EWe6SMOk40RJf/8pd2Omw+yEM6u/YzjtSQdXT1A8Ov96fiwidYqtkTD/zs/DWdFNjGXUWL/f622SU2E3KqZL08/2MeiNII9rdodmL+0d6LUVkgKUqJcJSpP8Tq1rENeqSGUEz92xFB6IfJ4knQIieQXFKd6hYObJtJX1uP0GBRH3py9BYNLDydWsI0ZCfyrLHzXcmEA/8t7gbBo24LS1pbtqyyJrinVbHiwuV9hWkbNTSwhIUfq1tYfSzKVw5h/Sq+7IyS6WBVUmFs/CyGrxatzjn8szimUftKgzMIkvZ+5r5Aq/3c41VcnIWpJVZeEtt9AlMj+AY4oq49YdetBWzJSwZcPHGqRMc+vVzmT11GDEOqFoFZKaKlYzXcr/X71BJ1A5ft+ubQKVja2zmfL133pl1HillL4MGa3kvIH3K39q1BL4PFDAaTdnyA+jXZlPlumUwAWFf4TaLCOm/R3WE0e+0NVfgCNd+bPN03WyS21w6q1VQIpHw8YDd+6Wq44aCpZzBSJsjsXqBysOhxloM5wxBRJWjTj0RNRGGvd5cq7SGTTWUARH+hNQkdZUfUmfpBvo52WfzNZV49lKKXhTKpD7XAVrrEmf+P7i/XppubXufOsLhhQy3kSVLMOtQSHvwmGsgnYKHSEhY6qgjdknJFs5FKutQ1gkvbjsubjpeFod9FZi5Hx1tpGwueXAyc0HBvtIFCYVket7NEb1T+11LQGr+KQeY/ElpE/udaOZduy9vyykO0BlIC1gvpwWInqkFTswoWQkJ8gN/CKPc6k9X7wSnWHHHpORpLCEVJIZp8y2aFAfYEpeiCxrtpHb+eVu7kz1fY1kR4ntCCrRONhqCDDNTs+HYp+RJrY8BB4bjKXK4M/+srQ4mquqHZLMjW+tTsYXuph1FQ5nYp/h8Zbks45dOq7vnLDwexUjbeYi4sJ3LnlgDqNqQw79ub1HOS+WrcYu8mQntYB1RYOwtL14zM8GbsfSFRHsPXSToL6mvCm5OX85DWogEt1FoWZh10a6x6cPMP1qO/7ZyQnJDP+kuaXjJeOI1czS+HKIdmDP0oJNQRaxoiYMEhDnsKEZM7W8tf5giyjreU0DGcgRQkpVc6jzT6NxFQmk2aPNjbNtUoLx7xkbPMSywZ2FoVsSNoMYgdpIcXWiged2xKK/0WHGK0Ua8MFzj+l0BUn1Z7JmqTRqr1jfERidpK52j7vZ0ZvTrdQN84E1ySZjlV3q3UyHA59qkRLwNysztrqXAyPqdznnXPrJJnSGueSYaeU4re5WdGp3LZtreqNtZzGAz434tv4YmK6FWPXMInR3sIkfbrOAe9Ftcx6mRDKI1j7Y2UfL22s2H6sa+1fnnDw0NV8e6Lot+eHTkPuaHs8nnSoOJMGlJtERqjn78/QDJ9G3Mz06TYPZo9fHmb1+z7/1VMJgjM9zrfffdChm9dbUP/eLvq7a73jqMO9CSRPJB3Fr1FXBrYw8N4DLxY1tY7ontt4+dm3wZdQO9RrTc7g29uLj79hGmmkSIpCb6W1IzjciwaaB3lsA90BpFqOqFJhStEQ333uUuZ8lk/r2Bb6y/urfr0dhQqIxdIoLg3vebY+X6WpnpAmtjohcLVWe/F5MeYB64bMpDF949jPtOFNHMmRPl8iM2e0lHMaXn0oNs72lMms0VxyTkRGjL892PkfDrlbQQiDMpwAAAAASUVORK5CYII=" alt="여수고등학교 교표" width="42">
+    <div class="sig-text">
+      <div class="sig-org">여수고 학생회</div>
+      <div class="sig-dept">학습부</div>
+    </div>
+  </div>
 </footer>
 
 </div>
